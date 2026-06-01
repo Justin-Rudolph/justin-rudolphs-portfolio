@@ -1,32 +1,46 @@
-import { Link, NavLink } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
-const navLinks = [
-  { to: '/about', label: 'About' },
-  { to: '/projects', label: 'Projects' },
-  { to: '/skills', label: 'Skills' },
-  { to: '/contact', label: 'Contact' },
+const NAV = [
+  { href: '#projects',   label: 'Work' },
+  { href: '#about',      label: 'About' },
+  { href: '#experience', label: 'Experience' },
+  { href: '#contact',    label: 'Contact' },
 ];
 
+function scrollTo(href: string) {
+  const el = document.querySelector(href);
+  if (el) el.scrollIntoView({ behavior: 'smooth' });
+}
+
 export default function Header() {
+  const [pastHero, setPastHero] = useState(false);
+
+  useEffect(() => {
+    const handler = () => setPastHero(window.scrollY > window.innerHeight * 0.75);
+    window.addEventListener('scroll', handler, { passive: true });
+    return () => window.removeEventListener('scroll', handler);
+  }, []);
+
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur">
-      <div className="max-w-5xl mx-auto px-4 lg:px-6 flex h-14 items-center justify-between">
-        <Link to="/" className="font-bold text-lg tracking-tight">
-          Justin Rudolph
-        </Link>
-        <nav className="flex items-center gap-6">
-          {navLinks.map(({ to, label }) => (
-            <NavLink
-              key={to}
-              to={to}
-              className={({ isActive }) =>
-                `text-sm font-medium transition-colors hover:text-primary ${
-                  isActive ? 'text-primary' : 'text-muted-foreground'
-                }`
-              }
+    <header className="header-root">
+      <div className="header-inner">
+        <button
+          className="header-logo"
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          aria-label="Back to top"
+        >
+          JR
+        </button>
+        <nav className={`header-nav${pastHero ? ' header-nav--visible' : ''}`} aria-label="Site navigation">
+          {NAV.map(({ href, label }) => (
+            <a
+              key={href}
+              href={href}
+              className="header-nav-link"
+              onClick={e => { e.preventDefault(); scrollTo(href); }}
             >
               {label}
-            </NavLink>
+            </a>
           ))}
         </nav>
       </div>

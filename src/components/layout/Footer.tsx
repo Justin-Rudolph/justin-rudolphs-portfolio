@@ -1,9 +1,9 @@
 export default function Footer() {
   return (
-    <footer className="border-t border-border py-6">
-      <div className="max-w-5xl mx-auto px-4 lg:px-6 flex items-center justify-between text-sm text-muted-foreground">
-        <p>&copy; {new Date().getFullYear()} Justin Rudolph</p>
-        <p>Built with React &amp; Vite</p>
+    <footer className="footer-root">
+      <div className="footer-inner">
+        <span>&copy; {new Date().getFullYear()} Justin Rudolph</span>
+        <span>Designed &amp; built with React + Vite</span>
       </div>
     </footer>
   );

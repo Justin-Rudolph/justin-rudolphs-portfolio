@@ -1,25 +1,58 @@
-import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
-import Layout from '@/components/layout/Layout';
+import { useNavigate } from 'react-router-dom';
 
 export default function NotFound() {
+  const navigate = useNavigate();
+
   return (
-    <Layout>
-      <section className="bg-jr-dark min-h-[60vh] flex items-center">
-        <div className="max-w-5xl mx-auto px-4 lg:px-6">
-          <p className="text-jr-indigo text-xs font-semibold tracking-[0.2em] uppercase mb-3">404</p>
-          <h1 className="text-5xl lg:text-7xl font-bold text-white mb-4">Page Not Found</h1>
-          <p className="text-slate-400 text-lg font-light mb-8">
-            The page you're looking for doesn't exist.
-          </p>
-          <Link
-            to="/"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-jr-indigo hover:bg-jr-indigo-dark text-white font-semibold text-sm tracking-wide transition-colors rounded-md"
-          >
-            Back to Home <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
-      </section>
-    </Layout>
+    <div
+      style={{
+        minHeight: '100svh',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: 'var(--jr-bg)',
+        padding: '2rem',
+        textAlign: 'center',
+        gap: '1rem',
+      }}
+    >
+      <p
+        style={{
+          fontFamily: 'var(--jr-font-mono)',
+          fontSize: '0.625rem',
+          letterSpacing: '0.3em',
+          textTransform: 'uppercase',
+          color: 'var(--jr-accent)',
+        }}
+      >
+        404
+      </p>
+      <h1
+        style={{
+          fontFamily: 'var(--jr-font-display)',
+          fontSize: 'clamp(48px, 8vw, 80px)',
+          fontWeight: 900,
+          letterSpacing: '-2px',
+          color: 'var(--jr-text)',
+          lineHeight: 0.95,
+        }}
+      >
+        Page Not Found
+      </h1>
+      <p
+        style={{
+          fontFamily: 'var(--jr-font-body)',
+          fontSize: '0.9375rem',
+          color: 'var(--jr-text-dim)',
+          marginBottom: '1rem',
+        }}
+      >
+        The page you're looking for doesn't exist.
+      </p>
+      <button className="btn-primary" onClick={() => navigate('/')}>
+        Back to Home
+      </button>
+    </div>
   );
 }
