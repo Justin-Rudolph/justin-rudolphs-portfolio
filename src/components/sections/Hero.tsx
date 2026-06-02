@@ -109,14 +109,6 @@ export default function Hero() {
         </div>
       </div>
 
-      <div
-        className="hero-scroll"
-        style={{ opacity: isComplete ? 1 : 0, transition: 'opacity 0.5s ease 0.8s' }}
-        aria-hidden="true"
-      >
-        <div className="hero-scroll-line" />
-        <span>Scroll</span>
-      </div>
     </section>
   );
 }
