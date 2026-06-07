@@ -1,4 +1,5 @@
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
+import GlitchSectionTitle from '@/components/shared/GlitchSectionTitle';
 import { skillGroups } from '@/data/skills';
 
 export default function Skills() {
@@ -18,14 +19,7 @@ export default function Skills() {
         >
           Tech Stack
         </p>
-        <h2
-          className="section-title"
-          data-animate
-          data-visible={isVisible ? 'true' : undefined}
-          data-delay="1"
-        >
-          Skills
-        </h2>
+        <GlitchSectionTitle title="Skills" isVisible={isVisible} />
 
         <div className="skills-grid">
           {skillGroups.map((group, gi) => {

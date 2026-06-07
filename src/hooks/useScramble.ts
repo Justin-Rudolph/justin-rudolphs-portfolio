@@ -2,18 +2,20 @@ import { useEffect, useRef, useState } from 'react';
 
 const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*!?';
 
+function scrambleText(target: string) {
+  return target
+    .split('')
+    .map(c => (c === '\n' ? '\n' : CHARS[Math.floor(Math.random() * CHARS.length)]))
+    .join('');
+}
+
 interface ScrambleResult {
   display: string;
   isComplete: boolean;
 }
 
 export function useScramble(target: string, startDelay = 400): ScrambleResult {
-  const [display, setDisplay] = useState<string>(() =>
-    target
-      .split('')
-      .map(c => (c === '\n' ? '\n' : CHARS[Math.floor(Math.random() * CHARS.length)]))
-      .join('')
-  );
+  const [display, setDisplay] = useState<string>(() => scrambleText(target));
   const [isComplete, setIsComplete] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -23,6 +25,7 @@ export function useScramble(target: string, startDelay = 400): ScrambleResult {
 
     function resolveNext() {
       if (resolved >= letters.length) {
+        setDisplay(target);
         setIsComplete(true);
         return;
       }
@@ -59,7 +62,11 @@ export function useScramble(target: string, startDelay = 400): ScrambleResult {
       tick();
     }
 
-    timerRef.current = setTimeout(resolveNext, startDelay);
+    timerRef.current = setTimeout(() => {
+      setDisplay(scrambleText(target));
+      setIsComplete(false);
+      resolveNext();
+    }, startDelay);
 
     return () => {
       if (timerRef.current) clearTimeout(timerRef.current);

@@ -1,4 +1,5 @@
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
+import GlitchSectionTitle from '@/components/shared/GlitchSectionTitle';
 import { experiences } from '@/data/experience';
 
 export default function Experience() {
@@ -17,14 +18,7 @@ export default function Experience() {
           >
             Work History
           </p>
-          <h2
-            className="section-title"
-            data-animate
-            data-visible={headerVisible ? 'true' : undefined}
-            data-delay="1"
-          >
-            Experience
-          </h2>
+          <GlitchSectionTitle title="Experience" isVisible={headerVisible} />
         </div>
 
         <div

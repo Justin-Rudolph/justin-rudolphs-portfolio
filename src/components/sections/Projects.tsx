@@ -1,4 +1,5 @@
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
+import GlitchSectionTitle from '@/components/shared/GlitchSectionTitle';
 import { projects } from '@/data/projects';
 
 export default function Projects() {
@@ -17,14 +18,7 @@ export default function Projects() {
           >
             Selected Work
           </p>
-          <h2
-            className="section-title"
-            data-animate
-            data-visible={headerVisible ? 'true' : undefined}
-            data-delay="1"
-          >
-            Projects
-          </h2>
+          <GlitchSectionTitle title="Projects" isVisible={headerVisible} />
         </div>
 
         <div
