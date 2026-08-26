@@ -1202,8 +1202,17 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 1.125rem;
 }
+.projects-grid > .project-card:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+  max-width: calc(50% - 0.5625rem);
+  margin: 0 auto;
+}
 @media (max-width: 560px) {
   .projects-grid { grid-template-columns: 1fr; }
+  .projects-grid > .project-card:last-child:nth-child(odd) {
+    max-width: none;
+    margin: 0;
+  }
 }
 
 .project-card {
@@ -1257,6 +1266,7 @@
   justify-content: center;
 }
 .project-thumb--suros   { background: linear-gradient(135deg, #0a0f1e 0%, #111827 100%); }
+.project-thumb--retees  { background: linear-gradient(135deg, #0f2e17 0%, #1a4a26 100%); }
 .project-thumb--waves   { background: linear-gradient(135deg, #0c1635 0%, #162850 100%); }
 .project-thumb--gladful { background: linear-gradient(135deg, #5ba8c4 0%, #3d8fa8 100%); }
 .project-thumb--spiral  { background: linear-gradient(135deg, #091a0c 0%, #0d2411 100%); }
